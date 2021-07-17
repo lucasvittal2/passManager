@@ -1,9 +1,10 @@
 import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import theme from '../../../global/theme';
 
 export const Container = styled(TouchableOpacity)`
-  background-color: #FECBB2;
+  background-color: ${theme.colors.secondBackground};
 
   padding: 15px 0;
 
@@ -13,8 +14,8 @@ export const Container = styled(TouchableOpacity)`
   border-radius: 10px;
 `;
 export const ButtonText = styled.Text`
-  font-family: 'Poppins_500Medium';
+  font-family: ${theme.fonts.medium};
   font-size: ${RFValue(14)}px;
 
-  color: #4E3975;
+  color: ${theme.colors.text};
 `;

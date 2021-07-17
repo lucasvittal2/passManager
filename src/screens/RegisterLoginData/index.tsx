@@ -18,6 +18,7 @@ import {
 
 
 import { KEY } from '../../config/storage';
+import { useStorageData } from '../../hooks/useStorageData';
 interface FormData {
   title: string;
   email: string;
@@ -41,6 +42,7 @@ export function RegisterLoginData() {
   } = useForm({
     resolver: yupResolver(schema)
   });
+  const { setLogin, getLogins } = useStorageData(); 
 
   async function handleRegister(formData: FormData) {
     const newLoginData = {
@@ -51,16 +53,17 @@ export function RegisterLoginData() {
     }
     // Save data on AsyncStorage
     try {
-      const data = await AsyncStorage.getItem(KEY);
+      const data = await getLogins();
       const currentData = data? JSON.parse(data): [];
       const dataFormatted = [ 
         ...currentData,
         newLoginData
       ];
-      await AsyncStorage.setItem(KEY, JSON.stringify(dataFormatted));
+      await setLogin(JSON.stringify(dataFormatted));
       reset();
 
     } catch (error) {
+      console.log(error);
       Alert.alert("Não foi possível registrar novo login");
     }
   }
@@ -83,6 +86,7 @@ export function RegisterLoginData() {
             placeholder="Escreva o título aqui"
             autoCapitalize="sentences"
             autoCorrect
+
           />
           <Input
             title="Email"

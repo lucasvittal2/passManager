@@ -34,7 +34,7 @@ export const Title = styled.Text`
 export const Email = styled.Text`
   font-family: 'Poppins_500Medium';
   font-size: ${RFValue(12)}px;
-  color: #9883BF;
+  color: #4E3975;
 `;
 
 export const ShowPasswordButton = styled.TouchableOpacity``;

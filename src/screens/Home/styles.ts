@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 
 import { RFValue } from 'react-native-responsive-fontsize';
+import theme from '../../global/theme';
 
 interface LoginListDataProps {
   id: string;
@@ -12,7 +13,7 @@ interface LoginListDataProps {
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #4E3975;
+  background-color:${theme.colors.firstBackground};
   padding: 0 27px;
 `;
 
@@ -32,6 +33,6 @@ export const EmptyListContainer = styled.View`
 
 export const EmptyListMessage = styled.Text`
   font-size: ${RFValue(16)}px;
-  font-family: 'Poppins_500Medium';
-  color: #9883BF;
+  font-family: ${theme.fonts.medium};
+  color: ${theme.colors.iconColor};
 `;

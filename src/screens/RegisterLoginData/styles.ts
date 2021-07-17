@@ -1,22 +1,23 @@
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import theme from '../../global/theme';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #4E3975;
+  background-color: ${theme.colors.firstBackground};
 `;
 
 export const HeaderTitle = styled.Text`
-  color: #FFFFFF;
+  color: ${theme.colors.thirdBackground};
   font-size: ${RFValue(18)}px;
-  font-family: 'Poppins_500Medium';
+  font-family: ${theme.fonts.medium};
 
   margin: ${RFValue(64)}px auto ${RFValue(41)}px auto;
 `;
 
 export const Form = styled.View`
   flex: 1;
-  background-color: #FFFFFF;
+  background-color: ${theme.colors.thirdBackground};
 
   padding: 0 ${RFValue(27)}px;
   padding-top: ${RFValue(26)}px;

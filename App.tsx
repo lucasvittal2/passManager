@@ -4,6 +4,10 @@ import { useFonts, Poppins_400Regular, Poppins_500Medium } from '@expo-google-fo
 import { NavigationContainer } from '@react-navigation/native';
 
 import { AppRoutes } from './src/routes/app.routes';
+import { StorageDataProvider} from './src/hooks/useStorageData';
+
+import { ThemeProvider } from "styled-components";
+import theme  from './src/global/theme';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -16,8 +20,12 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <AppRoutes />
-    </NavigationContainer>
+    <ThemeProvider theme={theme}>
+      <StorageDataProvider>
+        <NavigationContainer>
+          <AppRoutes />
+        </NavigationContainer>
+      </StorageDataProvider>
+    </ThemeProvider>
   );
 }

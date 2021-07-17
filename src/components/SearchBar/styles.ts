@@ -3,11 +3,12 @@ import Feather from '@expo/vector-icons/Feather';
 import { TextInput } from 'react-native';
 
 import { RFValue } from 'react-native-responsive-fontsize';
+import theme from '../../global/theme';
 
 export const Container = styled.View`
   flex-direction: row;
 
-  background-color: #FFFFFF;
+  background-color: ${theme.colors.thirdBackground};
   padding: 12px 16px;
   margin-top: ${RFValue(54)}px;
   border-radius: 10px;
@@ -18,7 +19,7 @@ export const Container = styled.View`
 
 export const Input = styled(TextInput)`
   font-size: ${(RFValue(12))}px;
-  color: #4E3975;
+  color: ${theme.colors.text};
 `;
 
 export const Icon = styled(Feather).attrs({

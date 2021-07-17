@@ -12,7 +12,7 @@ import {
   EmptyListMessage
 } from './styles';
 
-import { KEY } from '../../config/storage';
+import { useStorageData } from '../../hooks/useStorageData'
 
 interface LoginDataProps {
   id: string;
@@ -20,16 +20,19 @@ interface LoginDataProps {
   email: string;
   password: string;
 };
-
+import { KEY } from '../../config/storage'
 type LoginListDataProps = LoginDataProps[];
 
 export function Home() {
   const [searchListData, setSearchListData] = useState<LoginListDataProps>([]);
   const [data, setData] = useState<LoginListDataProps>([]);
+  const { getLogins}  = useStorageData();
+
 
   async function loadData() {
-    const dataFromStorage =  await AsyncStorage.getItem(KEY);
+    const dataFromStorage = await getLogins(); 
     const logins  =  dataFromStorage ? JSON.parse(dataFromStorage): [];
+    console.log(logins);
     setSearchListData(logins);
     setData(logins);
   }
@@ -42,9 +45,11 @@ export function Home() {
   }, []));
 
   function handleFilterLoginData(search: string) {
-    const filteredLogins = data.filter( login => 
-      login.title.trim()!= null && login.title.trim() != '' && login.title.trim() !== search
-      )
+    const filteredLogins = data.filter( login => {
+
+      const treatedWord = login.title.trim();
+      return treatedWord != null && treatedWord !== '' && (treatedWord.toLowerCase()).includes(search.toLowerCase())
+      })
       setSearchListData(filteredLogins);
   }
 
